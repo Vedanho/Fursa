@@ -1,0 +1,464 @@
+:root {
+  --primary: #1B2B4B;
+  --slider: #1B2B4B;
+  --accent-blue: #7A9CC8;
+  --surface: #ffffff;
+  --surface-subtle: #F5F6FA;
+  --surface-active: #EEF2FF;
+  --bg: transparent;
+  --body-gradient: linear-gradient(180deg, #0b1a3b 0%, #0d2254 45%, #0a1628 100%);
+  --text-primary: #1B2B4B;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --text-inverse: #ffffff;
+  --border: #F3F4F6;
+  --divider: #F3F4F6;
+  --shadow-md: 0 18px 42px rgba(0, 0, 0, 0.18);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-shell {
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0 40px;
+  position: relative;
+  overflow: hidden;
+  background: var(--body-gradient);
+}
+
+.calculator {
+  width: min(100%, 500px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Header ── */
+.calculator-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 40px 24px 24px;
+  background: transparent;
+}
+
+.fursa-logo {
+  color: #ffffff;
+  font-family: Inter, sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  line-height: 1;
+}
+
+.fursa-company {
+  color: var(--accent-blue);
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.calc-title {
+  color: #ffffff;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 16px 16px;
+}
+
+/* ── Input card ── */
+.input-card {
+  margin: 0 10px;
+  background: var(--surface);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  padding: 24px 20px;
+}
+
+.field-divider {
+  height: 1px;
+  background: var(--divider);
+  margin: 0 -20px;
+}
+
+.field-group {
+  padding: 20px 0;
+}
+
+.field-group:first-child {
+  padding-top: 0;
+}
+
+.field-group:last-child {
+  padding-bottom: 0;
+}
+
+.field-label {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.label-row .field-label {
+  margin: 0;
+}
+
+.term-badge {
+  flex: none;
+  background: var(--surface-active);
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ── Money slider field ── */
+.money-slider-field,
+.markup-slider-field {
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.16s var(--ease), box-shadow 0.16s var(--ease);
+}
+
+.money-slider-field:focus-within,
+.markup-slider-field:focus-within {
+  border-color: rgba(27, 43, 75, 0.4);
+  box-shadow: 0 0 0 4px rgba(27, 43, 75, 0.08);
+}
+
+.money-field,
+.markup-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+}
+
+.money-field {
+  height: 86px;
+  padding: 0 18px 20px;
+}
+
+.markup-field {
+  justify-content: flex-end;
+  height: 76px;
+  padding: 0 18px 18px;
+}
+
+.money-field input,
+.markup-field input {
+  min-width: 0;
+  color: var(--text-primary);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.money-field input {
+  width: 100%;
+}
+
+.markup-field input {
+  width: 130px;
+  text-align: right;
+}
+
+.markup-field input::-webkit-outer-spin-button,
+.markup-field input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.markup-field input[type='number'] {
+  appearance: textfield;
+}
+
+.money-field span,
+.markup-field span {
+  flex: none;
+  color: var(--text-muted);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.money-range {
+  appearance: none;
+  cursor: pointer;
+  border-radius: 999px;
+  outline: none;
+  width: calc(100% - 28px);
+  height: 4px;
+  margin: 0;
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+}
+
+.money-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--surface);
+  background: var(--slider);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(27, 43, 75, 0.3);
+}
+
+.money-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 4px solid var(--surface);
+  background: var(--slider);
+  border-radius: 50%;
+}
+
+/* ── Term stepper ── */
+.term-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-subtle);
+  border-radius: 14px;
+  height: 56px;
+  padding: 0 20px;
+}
+
+.stepper-value {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.stepper-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+  line-height: 1;
+}
+
+.stepper-btn--plus {
+  color: var(--text-primary);
+}
+
+.stepper-btn:hover {
+  background: var(--border);
+}
+
+.stepper-btn:active {
+  transform: scale(0.93);
+}
+
+/* ── Results card (dark) ── */
+.results-card {
+  margin: 16px 10px 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: transform 0.16s var(--ease);
+}
+
+.results-card:hover {
+  transform: translateY(-1px);
+}
+
+.results-card:focus-visible {
+  outline: 3px solid rgba(122, 156, 200, 0.4);
+  outline-offset: 4px;
+}
+
+.results-label {
+  color: var(--accent-blue);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.results-amount {
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.results-term {
+  color: var(--accent-blue);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.copy-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── Summary card (white) ── */
+.summary-card {
+  margin: 16px 10px 0;
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 8px 20px;
+  box-shadow: var(--shadow-md);
+}
+
+.result-list {
+  margin: 0;
+}
+
+.result-list div {
+  min-height: 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--divider);
+  padding: 0;
+}
+
+.result-list div:last-child {
+  border-bottom: 0;
+}
+
+.result-list dt {
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.result-list dd {
+  color: var(--text-primary);
+  text-align: right;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.result-list .total-row {
+  border-bottom: 1px solid var(--divider) !important;
+}
+
+.result-list .total-row dt,
+.result-list .total-row dd {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* ── Disclaimer ── */
+.calculation-note {
+  color: var(--accent-blue);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  margin: 16px 10px 0;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ── WhatsApp button ── */
+.whatsapp-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 10px 0;
+  height: 60px;
+  color: #ffffff;
+  background: #25d366;
+  border-radius: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.3);
+  transition: opacity 0.15s var(--ease);
+}
+
+.whatsapp-link:hover {
+  opacity: 0.92;
+}
+
+/* ── Global ── */
+button,
+input,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid rgba(27, 43, 75, 0.22);
+  outline-offset: 3px;
+}
+
+.money-field input:focus-visible,
+.markup-field input:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 380px) {
+  .fursa-logo {
+    font-size: 28px;
+  }
+
+  .money-field {
+    height: 76px;
+    padding: 0 14px 18px;
+  }
+
+  .money-field input {
+    font-size: 24px;
+  }
+
+  .results-amount {
+    font-size: 36px;
+  }
+}
