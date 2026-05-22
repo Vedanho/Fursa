@@ -6,7 +6,7 @@ export const SETTINGS = {
   minDownRate: 0,
   maxDownRate: 0.9,
   roundStep: 100,
-  whatsAppPhone: "79280207757",
+  whatsAppPhone: "79635955576",
 };
 export const MONTHS = [
   "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
